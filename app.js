@@ -10,7 +10,7 @@ const firebaseConfig = {
   storageBucket: "how-average-are-you-a6486.firebasestorage.app",
   messagingSenderId: "787221670121",
   appId: "1:787221670121:web:d18c02ca0f2b66fca56878",
-  measurementId: "G-DQDLLPBNK0"
+  measurementId: "G-DQDLLPBNK0",
 };
 
 // Initialize Firebase
@@ -41,7 +41,7 @@ async function init() {
   try {
     const [questionsResponse, votesSnapshot] = await Promise.all([
       fetch("questions.json"),
-      get(ref(db, "votes"))
+      get(ref(db, "votes")),
     ]);
 
     questions = await questionsResponse.json();
@@ -55,13 +55,9 @@ async function init() {
 
 // Load the current question
 function loadQuestion() {
-  if (currentQuestionIndex >= questions.length) {
-    currentQuestionIndex = 0; // Loop back to the start
-  }
-
   const question = questions[currentQuestionIndex];
   questionDiv.textContent = question.text;
-  updateStats(question.id);
+  statsDiv.style.display = "none"; // Hide stats until user votes
 }
 
 // Update stats for the current question
@@ -76,6 +72,7 @@ function updateStats(questionId) {
     <p>Above Average: ${abovePercent}%</p>
     <p>Below Average: ${belowPercent}%</p>
   `;
+  statsDiv.style.display = "block"; // Show stats after user votes
 }
 
 // Handle a vote
@@ -86,7 +83,7 @@ function handleVote(isAbove) {
   votesData[questionId] = votesData[questionId] || {
     above: 0,
     below: 0,
-    text: currentQuestion.text // Add question text to votesData
+    text: currentQuestion.text, // Add question text to votesData
   };
 
   if (isAbove) {
@@ -98,8 +95,8 @@ function handleVote(isAbove) {
   // Update Firebase with the new votesData
   update(ref(db, "votes"), { [questionId]: votesData[questionId] })
     .then(() => {
-      currentQuestionIndex++;
-      loadQuestion();
+      updateStats(questionId);
+      currentQuestionIndex = (currentQuestionIndex + 1) % questions.length; // Circular increment
     })
     .catch((error) => {
       console.error("Error updating votes:", error);
