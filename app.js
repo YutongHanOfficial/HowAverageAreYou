@@ -80,8 +80,14 @@ function updateStats(questionId) {
 
 // Handle a vote
 function handleVote(isAbove) {
-  const questionId = questions[currentQuestionIndex].id;
-  votesData[questionId] = votesData[questionId] || { above: 0, below: 0 };
+  const currentQuestion = questions[currentQuestionIndex];
+  const questionId = currentQuestion.id;
+
+  votesData[questionId] = votesData[questionId] || {
+    above: 0,
+    below: 0,
+    text: currentQuestion.text // Add question text to votesData
+  };
 
   if (isAbove) {
     votesData[questionId].above++;
@@ -89,6 +95,7 @@ function handleVote(isAbove) {
     votesData[questionId].below++;
   }
 
+  // Update Firebase with the new votesData
   update(ref(db, "votes"), { [questionId]: votesData[questionId] })
     .then(() => {
       currentQuestionIndex++;
