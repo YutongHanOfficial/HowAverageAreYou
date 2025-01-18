@@ -78,28 +78,32 @@ function updateStats(questionId) {
   `;
 }
 
-// Handle a vote
 function handleVote(isAbove) {
   const currentQuestion = questions[currentQuestionIndex];
   const questionId = currentQuestion.id;
 
+  // Initialize vote data for the current question if it doesn't exist
   votesData[questionId] = votesData[questionId] || {
     above: 0,
     below: 0,
-    text: currentQuestion.text // Add question text to votesData
+    text: currentQuestion.text
   };
 
+  // Increment the appropriate vote count
   if (isAbove) {
     votesData[questionId].above++;
   } else {
     votesData[questionId].below++;
   }
 
-  // Update Firebase with the new votesData
+  // Update the votes in the Firebase Realtime Database
   update(ref(db, "votes"), { [questionId]: votesData[questionId] })
     .then(() => {
-      currentQuestionIndex++;
-      loadQuestion();
+      // Introduce a 1-second delay before loading the next question
+      setTimeout(() => {
+        currentQuestionIndex++;
+        loadQuestion();
+      }, 1000); // 1000 milliseconds = 1 second
     })
     .catch((error) => {
       console.error("Error updating votes:", error);
