@@ -49,3 +49,25 @@ button:hover {
 #stats {
   font-size: 1.2em;
 }
+
+/** Visualization **/
+#chart {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+svg {
+  background-color: #1e1e1e;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+circle {
+  stroke: #fff;
+  stroke-width: 2px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+circle:hover {
+  transform: scale(1.2);
+}
