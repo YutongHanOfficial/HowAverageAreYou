@@ -1,0 +1,5 @@
+[
+  { "id": "q1", "text": "Are you smarter than average?" },
+  { "id": "q2", "text": "Are you healthier than average?" },
+  { "id": "q3", "text": "Are you more humble than average?" }
+]
