@@ -1,5 +1,12 @@
 [
   { "id": "q1", "text": "Are you smarter than average?" },
   { "id": "q2", "text": "Are you healthier than average?" },
-  { "id": "q3", "text": "Are you more humble than average?" }
+  { "id": "q3", "text": "Are you more humble than average?" },
+  { "id": "q4", "text": "Are you more racist than average?" },
+  { "id": "q5", "text": "Are you more attractive than average?" },
+  { "id": "q6", "text": "Are you more friendly than average?" },
+  { "id": "q7", "text": "Are you more religious than average?" },
+  { "id": "q8", "text": "Are you more fulfilled than average?" },
+  { "id": "q9", "text": "Are you a better driver than average?" },
+  { "id": "q10", "text": "Do you read more than average?" }
 ]
