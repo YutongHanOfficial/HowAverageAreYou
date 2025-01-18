@@ -3,14 +3,14 @@ import { getDatabase, ref, get, update } from "https://www.gstatic.com/firebasej
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyD-4fuqlH4nK6xnWbgYJ_kAE6I-zmMsYW0",
-  authDomain: "above-average.firebaseapp.com",
-  databaseURL: "https://above-average-default-rtdb.firebaseio.com",
-  projectId: "above-average",
-  storageBucket: "above-average.appspot.com",
-  messagingSenderId: "70807736682",
-  appId: "1:70807736682:web:7ef92ca8d58465c5881513",
-  measurementId: "G-YZYR1FZHLQ"
+  apiKey: "AIzaSyCQ5_pbAH7nGM2ACJ1gJGOvBKdSJ2nmCIY",
+  authDomain: "how-average-are-you-a6486.firebaseapp.com",
+  databaseURL: "https://how-average-are-you-a6486-default-rtdb.firebaseio.com",
+  projectId: "how-average-are-you-a6486",
+  storageBucket: "how-average-are-you-a6486.firebasestorage.app",
+  messagingSenderId: "787221670121",
+  appId: "1:787221670121:web:d18c02ca0f2b66fca56878",
+  measurementId: "G-DQDLLPBNK0"
 };
 
 // Initialize Firebase
