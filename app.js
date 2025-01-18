@@ -27,6 +27,15 @@ let questions = [];
 let currentQuestionIndex = 0;
 let votesData = {};
 
+// Utility function to shuffle an array
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 // Fetch questions and votes data
 async function init() {
   try {
@@ -36,6 +45,7 @@ async function init() {
     ]);
 
     questions = await questionsResponse.json();
+    questions = shuffleArray(questions); // Shuffle questions
     votesData = votesSnapshot.exists() ? votesSnapshot.val() : {};
     loadQuestion();
   } catch (error) {
